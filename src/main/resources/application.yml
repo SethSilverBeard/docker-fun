@@ -1,6 +1,8 @@
 # application server
 server.contextPath: /fun
 server.port: 8080
+spring.http.converters.preferred-json-mapper: gson #no effect (Jackson *should* fail according to JacksonHttpMessageConvertersConfiguration#44)
+spring.http.converters.preferred-json-mapper.gson: true #no effect (http://stackoverflow.com/questions/33339689/spring-boot-gson-singleton?answertab=votes#tab-top)
 
 # application datasource
 spring:
@@ -16,3 +18,12 @@ spring:
         auto: none
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
+  http:
+    converters:
+      preferred-json-mapper: gson
+
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG

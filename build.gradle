@@ -16,6 +16,13 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'docker'
+apply plugin: 'eclipse'
+
+eclipse {
+    classpath {
+       downloadSources=true
+    }
+}
 
 repositories {
     mavenCentral()
@@ -24,12 +31,16 @@ repositories {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+configurations {
+    //compile.exclude group: 'com.fasterxml.jackson.core'
+}
+
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-actuator')
     compile('org.springframework.boot:spring-boot-actuator-docs')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
-
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.0'
     compile group: 'commons-io', name: 'commons-io', version: '2.5'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
 
